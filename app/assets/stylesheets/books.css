@@ -1,0 +1,112 @@
+table.list {
+    font: 12px/1.5 tahoma, arial, "宋体";
+    width: 100%;
+    border-collapse: collapse;
+    width: 100%;
+    border: 0 none;
+    border-spacing: 0;
+}
+
+table.list tr {
+    border: 1px solid #cdd1d3;
+    height: 40px;
+    line-height: 40px;
+}
+
+table.list tr.selected {
+    background-color: #dff4ff;
+}
+
+table.list tr.hover {
+    background-color: #dff4ff;
+}
+
+table.list td {
+    border-bottom: 1px solid #cdd1d3;
+}
+
+table.list td .rename-input {
+    display: none;
+    border: 1px solid #808080;
+    height: 24px;
+}
+
+table.list td.checkbox-td {
+    width: 40px;
+}
+
+table.list span.checkbox {
+    width: 18px;
+    height: 18px;
+    background: url(/assets/checkbox.png) no-repeat 0 4px;
+    _background-image: url(/assets/checkbox-png8.png);
+    margin-left: 15px;
+    display: inline-block;
+}
+
+table.list span.checkbox.selected {
+    background-position: 0 -15px;
+}
+
+table.list td a {
+    color: #444;
+}
+
+table.list td.file-name {
+    padding-left: 38px;
+    background-image: url(/assets/file-icon-small.png);
+    _background-image: url(/assets/file-icon-small-png8.png);
+    background-repeat: no-repeat;
+}
+
+table.list td.folder-icon {
+    background-position: 0 -564px;
+}
+
+table.list td.post-icon {
+    background-position: 0 -527px;
+}
+
+table.list td.operate-bar {
+    width: 240px;
+}
+
+table.list td.operate-bar a {
+    display: none;
+}
+
+table.list td.operate-bar a {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+table.list td.updated-at {
+    width: 140px;
+}
+
+.new-book-win {
+    width: 400px;
+    height: 130px;
+    background: lightblue;
+    position: absolute;
+    display: none;
+}
+
+.new-book-win .win-title {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.new-book-win .close-btn {
+    position: absolute;
+    top: 0;
+    right: 4px;
+}
+
+.new-book-win .win-content {
+    background: #ffffff;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}

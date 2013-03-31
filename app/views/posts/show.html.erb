@@ -1,0 +1,12 @@
+<h1>Posts#show</h1>
+<p>Find me in app/views/posts/show.html.erb</p>
+<div class="post">
+  <div class="title">
+    <label>
+      <%= @post.title || "无标题" %>
+    </label>
+  </div>
+  <div class="content">
+    <%= @post.content.html_safe %>
+  </div>
+</div>

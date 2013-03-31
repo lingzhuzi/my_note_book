@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyNotebook</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="mod-topbar">
+  <div class="wrapper-box">
+    <div class="left-box">
+      <%= link_to "LOGO", root_path, :class => "q-logo" %>
+    </div>
+    <div class="center-box">
+      <ul class="q-menubox">
+        <li class="q-menuitem"><%= link_to "首页", root_path %></li>
+        <li class="q-menuitem"><%= link_to "笔记本", books_path %></li>
+        <li class="q-menuitem"><%= link_to "笔记", posts_path %></li>
+        <li class="q-menuitem"><%= link_to "帮助", "/web/help" %></li>
+        <li class="q-menuitem"><%= link_to "联系我们", "/web/contact_us" %></li>
+      </ul>
+    </div>
+    <div class="right-box">
+      <ul class="q-navbox">
+        <% if session[:cas_user].blank? %>
+            <li class="q-navitem"><%= link_to '登录', "#" %></li>
+        <% else %>
+            <li class="q-navitem"><label><%= session[:cas_user] %>已登录</label></li>
+            <li class="q-navitem"><%= link_to '退出', "#" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="operate-message" class="operate-message success"></div>
+
+<section class="mod-page-body">
+  <%= yield %>
+</section>
+<div class="footer"></div>
+<div id="mask"></div>
+</body>
+</html>

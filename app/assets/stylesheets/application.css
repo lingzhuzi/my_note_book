@@ -1,0 +1,115 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 13px;
+}
+
+/* Clearing
+--------------------------------------- */
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block;
+}
+
+.clear {
+    clear: both;
+}
+
+/*-----------mask------------*/
+#mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+.toolbar {
+    font-size: 13px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.toolbar a.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #474747;
+    font-weight: bold;
+    text-shadow: 0 1px #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: #bbb;
+    border-radius: 3px;
+
+    background: #f5f5f5;
+    background: -webkit-linear-gradient(top, #f5f5f5, #e5e5e5);
+    background: -moz-linear-gradient(top, #f5f5f5, #e5e5e5);
+    background: -ms-linear-gradient(top, #f5f5f5, #e5e5e5);
+    background: -o-linear-gradient(top, #f5f5f5, #e5e5e5);
+    background: linear-gradient(top, #f5f5f5, #e5e5e5);
+}
+
+.toolbar a.btn:hover {
+    background: -webkit-linear-gradient(top, #f0f7fa, #d8eaf2);
+    background: -moz-linear-gradient(top, #f0f7fa, #d8eaf2);
+    background: -ms-linear-gradient(top, #f0f7fa, #d8eaf2);
+    background: -o-linear-gradient(top, #f0f7fa, #d8eaf2);
+    background: linear-gradient(top, #f0f7fa, #d8eaf2);
+    border-color: #cbe3ee;
+    border-bottom-color: #97c7dd;
+    color: #337797;
+}
+
+/*--操作提示--*/
+.operate-message {
+    border: 1px solid #bde2f5;
+    border-radius: 4px;
+    background-color: #e4f3fb;
+    color: #000;
+    position: absolute;
+    top: 65px;
+    padding: 0 15px 0 40px;
+    height: 28px;
+    line-height: 28px;
+    background-image: url(/assets/operate-message-bg.png);
+    background-repeat: no-repeat;
+    z-index: 999;
+    display: none;
+}
+
+.operate-message.success {
+    background-position: 5px 5px;
+}
+
+.operate-message.failed {
+    background-position: 5px -30px;
+}

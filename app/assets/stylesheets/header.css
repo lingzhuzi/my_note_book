@@ -1,0 +1,113 @@
+
+.mod-topbar {
+    height: 40px;
+    _height: 38px;
+    background: transparent url(/assets/header_bg.png) repeat-x top left;
+    position: fixed;
+    _position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1023;
+    padding-bottom: 0;
+}
+
+.mod-topbar .wrapper-box {
+    width: 1000px;
+    margin: 0 auto;
+    height: 35px;
+    padding-bottom: 0;
+}
+
+.mod-topbar .left-box {
+    float: left;
+
+}
+
+.mod-topbar .center-box {
+    float: left;
+    margin-left: 50px;
+    height: 35px;
+}
+
+.mod-topbar .right-box {
+    float: right;
+    height: 35px;
+}
+
+.mod-topbar .q-logo {
+    display: block;
+    height: 35px;
+    padding: 0 15px;
+    line-height: 35px;
+}
+
+ul, ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.mod-topbar .q-menubox {
+    height: 100%;
+    float: left;
+}
+
+.mod-topbar .q-menubox .q-menuitem {
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    height: 100%;
+    line-height: 35px;
+}
+
+.mod-topbar .q-menubox .q-menuitem a {
+    color: #454545;
+    display: block;
+    float: left;
+    padding: 0 15px;
+    height: 34px;
+    border-bottom: none;
+}
+
+.mod-topbar .q-navbox {
+    height: 100%;
+    float: right;
+}
+
+.mod-topbar .q-navbox .q-navitem {
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    height: 100%;
+    line-height: 35px;
+}
+
+.mod-topbar .q-navbox .q-navitem a {
+    color: #454545;
+    display: block;
+    float: left;
+    padding: 0 10px;
+    height: 35px;
+    border-bottom: none;
+}
+
+.mod-page-body {
+    color: #454545;
+    zoom: 1;
+    height: auto;
+    _height: 100%;
+    min-height: 100%;
+    margin-top: 50px;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clearfix {
+    zoom: 1;
+}

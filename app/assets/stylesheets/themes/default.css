@@ -1,0 +1,150 @@
+.post {
+
+}
+
+/* Headings
+--------------------------------------- */
+.post .title {
+    font-size: 2.5em;
+    line-height: 1em;
+    margin: 0.6em 0 0.6em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.post h1 {
+    font-size: 2.5em;
+    line-height: 1em;
+    margin: 0.6em 0 0.6em;
+    font-weight: bold;
+}
+
+.post h2 {
+    font-size: 2.1428em;
+    line-height: 1em;
+    margin: 0.7em 0 .2333em;
+    font-weight: bold;
+}
+
+.post h3 {
+    font-size: 1.7142em;
+    line-height: 1.286em;
+    margin: 0.875em 0 0.2916em;
+    font-weight: bold;
+}
+
+.post h4 {
+    font-size: 1.2857em;
+    line-height: 1.2em;
+    margin: 1.6667em 0 .3887em;
+    font-weight: bold;
+}
+
+.post h5 {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 1em 0 .5em;
+    font-weight: bold;
+}
+
+.post h6 {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 1em 0 .5em;
+    font-weight: normal;
+}
+
+/**
+  * Content
+  */
+.post a {
+    color: #980905;
+    text-decoration: underline;
+}
+
+.post .warning_container {
+    background: #F9D9D8 url(/assets/themes/default/tab_warning.gif) no-repeat left top;
+    padding: 1em 1em 1em 48px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.post .info_container {
+    background: #d5e9f6 url(/assets/themes/default/tab_info.gif) no-repeat left top;
+    padding: 1em 1em 1em 48px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.post .note_container {
+    background: #fff9d8 url(/assets/themes/default/tab_note.gif) no-repeat left top;
+    padding: 1em 1em 1em 48px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.post .code_container {
+    background: #EEE url(/assets/themes/default/tab_code.gif) no-repeat left top;
+    padding: 1em 1em 1em 48px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.post .code_container .line {
+
+}
+
+.post .code_container .line .spaces {
+
+}
+
+.post .code_container .line .keyword {
+    color: #64434d !important;
+}
+
+.post .code_container .line .plain {
+    color: #222 !important;
+}
+
+.post .code_container .line .bold {
+    color: #222 !important;
+    font-weight: bold !important;
+}
+
+.post .code_container .line .number {
+    color: #0066cc !important;
+}
+
+.post .code_container .line .string {
+    font-style: italic !important;
+    color: #6588A8 !important;
+}
+
+.post .code_container .line .comments {
+    color: #708090 !important;
+}
+
+.post table {
+    margin: 10px 0 10px;
+    border: 2px solid #CCC;
+    background: #FFF;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.post table th {
+    border: 1px solid #CCC;
+    border-bottom: 2px solid #CCC;
+    background: #EEE;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    border-collapse: collapse;
+}
+
+.post table td {
+    padding: 0.25em 1em;
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    text-align: left;
+    font-weight: normal;
+}
