@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20121215055540) do
     t.text     "content"
     t.string   "from"
     t.string   "author"
+    t.string   "chapters"
     t.integer  "book_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

@@ -2,7 +2,6 @@
   <div style="display: inline-block;">
     <a id="parent_book" href="#" class="btn">上一级</a>
     <a href="javascript:;" class="btn new-book-btn">新建笔记本</a>
-    <%= link_to '新建笔记本', new_book_path, :class => "btn" %>
     <%= link_to '新建笔记', new_post_path, :class => "btn", :target => "_blank" %>
   </div>
   <div class="operate-bar" style="display: inline-block;">
@@ -18,7 +17,7 @@
 <div class="list-content">
   <table class="list">
     <% @books.each do |book| %>
-        <tr>
+        <tr class="book-line <%= "book-#{book.id}" %>">
           <td class="checkbox-td"><span class="checkbox"></span></td>
           <td class="file-name folder-icon">
             <%= link_to "#{book.name}", book, :class => "book-name", :target => "_blank" %>
@@ -33,10 +32,10 @@
         </tr>
     <% end %>
     <% @posts.each do |post| %>
-        <tr>
+        <tr class="post-line <%= "post-#{post.id}" %>">
           <td class="checkbox-td"><span class="checkbox"></span></td>
           <td class="file-name post-icon">
-            <%= link_to "#{post.title}", post, :class => "post-name", :target => "_blank" %>
+            <%= link_to "#{post.title}", post, :class => "post-title", :target => "_blank" %>
             <input type="hidden" value="<%= post.id %>" class="post-id">
             <input type="text" value="<%= post.title %>" class="rename-input rename-post"></td>
           <td class="operate-bar">
