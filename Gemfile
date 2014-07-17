@@ -1,6 +1,6 @@
 source 'http://ruby.taobao.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '4.0.0'
 
 gem 'thin'
 gem 'sqlite3'

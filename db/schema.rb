@@ -9,30 +9,30 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121215055540) do
+ActiveRecord::Schema.define(version: 20121215055540) do
 
-  create_table "books", :force => true do |t|
+  create_table "books", force: true do |t|
     t.string   "name"
     t.integer  "book_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "books", ["book_id"], :name => "index_books_on_book_id"
+  add_index "books", ["book_id"], name: "index_books_on_book_id"
 
-  create_table "posts", :force => true do |t|
+  create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "content"
     t.string   "from"
     t.string   "author"
     t.string   "chapters"
     t.integer  "book_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "posts", ["book_id"], :name => "index_posts_on_book_id"
+  add_index "posts", ["book_id"], name: "index_posts_on_book_id"
 
 end

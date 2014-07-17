@@ -42,22 +42,24 @@ $(document).ready(function () {
             }
         },
         createPost: function () {
-            var post = { id: $("#post_id").val(), title: $("#post_title").val(), content: $("#post_content").val() };
+            var post = { id: $("#post_id").val(), title: $("#post_title").val(), content: $("#post_content").val(), book_id: $('#post_book_id').val() };
             if (post.title && post.content) {
-                $.post("/posts", {post: post},function (data) {
-                    if (data.status == "created") {
-                        $("#post_id").val(data.id);
-                        new Notice("success", "保存成功").show();
-                    } else {
-                        new Notice("failed", "保存失败，请稍候再试").show();
-                    }
-                }, "json").error(function () {
-                        new Notice("failed", "保存失败，请稍候再试").show();
-                    }
-                );
-            } else {
-                alert("没有内容");
+//                $.post("/posts", {post: post},function (data) {
+//                    if (data.status == "created") {
+//                        $("#post_id").val(data.id);
+//                        new Notice("success", "保存成功").show();
+//                    } else {
+//                        new Notice("failed", "保存失败，请稍候再试").show();
+//                    }
+//                }, "json").error(function () {
+//                        new Notice("failed", "保存失败，请稍候再试").show();
+//                    }
+//                );
+//            } else {
+//                alert("没有内容");
+                $('form').submit();
             }
+
         },
         updatePost: function () {
             var post = { id: $("#post_id").val(), title: $("#post_title").val(), content: $("#post_content").val() };

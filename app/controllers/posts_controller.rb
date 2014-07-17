@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new(:title => "在此输入标题")
+    @post = Post.new(:title => "在此输入标题", :book_id => params[:book_id])
 
     respond_to do |format|
       format.html
@@ -31,10 +31,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(post_params)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, :notice => 'post has created successfully' }
+        format.html { redirect_to edit_post_path(@post), :notice => 'post has created successfully' }
         format.json { render :json => {:id => @post.id, :status => :created} }
       else
         format.html { render :action => "new" }
@@ -47,9 +47,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     respond_to do |format|
-      if @post.update_attributes(params[:post])
+      if @post.update_attributes(post_params)
         format.html { redirect_to post_path(@post), :notice => 'post was successfully updated.' }
-        format.json { render :json => @post }
+        format.json { render :json => {status: 'updated'} }
       else
         format.html { render :action => "edit" }
         format.json { render :json => {:error => @post.errors, :status => :unprocessable_entity} }
@@ -59,5 +59,10 @@ class PostsController < ApplicationController
 
   def destroy
 
+  end
+
+  private
+  def post_params
+    params.require(:post).permit(:title, :content, :book_id)
   end
 end

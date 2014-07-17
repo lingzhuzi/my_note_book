@@ -1,8 +1,13 @@
 <div class="toolbar" style="position: relative;">
   <div style="display: inline-block;">
-    <a id="parent_book" href="#" class="btn">上一级</a>
+    <% if @book.present? %>
+        <input id="book_id" type="hidden" value="<%= @book.id %>">
+        <a id="parent_book" href="/books/<%= @book.id %>/back" class="btn">上一级</a>
+    <% end %>
+
     <a href="javascript:;" class="btn new-book-btn">新建笔记本</a>
-    <%= link_to '新建笔记', new_post_path, :class => "btn", :target => "_blank" %>
+
+    <a href="/posts/new<%= "?book_id=#{@book.id}" if @book %>" class="btn">新建笔记</a>
   </div>
   <div class="operate-bar" style="display: inline-block;">
     <a href="#" class="btn">移动</a>
@@ -10,49 +15,12 @@
   </div>
   <div style="display: inline-block;position: absolute;right: 0;">
     <!-- TODO 搜索功能 -->
-    <input type="text" style="border: 1px solid #808080;height: 24px;line-height: 24px;">
-    <a href="#" class="btn">搜索</a>
+    <input id="key_word" type="text" style="border: 1px solid #808080;height: 24px;line-height: 24px;">
+    <a href="#" class="btn search-btn">搜索</a>
   </div>
 </div>
 <div class="list-content">
-  <table class="list">
-    <% @books.each do |book| %>
-        <tr class="book-line <%= "book-#{book.id}" %>">
-          <td class="checkbox-td"><span class="checkbox"></span></td>
-          <td class="file-name folder-icon">
-            <%= link_to "#{book.name}", book, :class => "book-name", :target => "_blank" %>
-            <input type="hidden" value="<%= book.id %>" class="book-id">
-            <input type="text" value="<%= book.name %>" class="rename-input rename-book"></td>
-          <td class="operate-bar">
-            <a href="javascript:;" class="operate rename-book" title="重命名">重命名</a>
-            <a href="javascript:;" class="operate delete-book" title="删除">删除</a>
-            <a href="javascript:;" class="operate move-book" title="移动">移动</a>
-          </td>
-          <td class="updated-at"><%= fd book.updated_at %></td>
-        </tr>
-    <% end %>
-    <% @posts.each do |post| %>
-        <tr class="post-line <%= "post-#{post.id}" %>">
-          <td class="checkbox-td"><span class="checkbox"></span></td>
-          <td class="file-name post-icon">
-            <%= link_to "#{post.title}", post, :class => "post-title", :target => "_blank" %>
-            <input type="hidden" value="<%= post.id %>" class="post-id">
-            <input type="text" value="<%= post.title %>" class="rename-input rename-post"></td>
-          <td class="operate-bar">
-            <a href="javascript:;" class="operate rename-post" title="重命名">重命名</a>
-            <%= link_to "编辑", edit_post_path(post), :target => "_blank" %>
-            <a href="javascript:;" class="operate delete-post" title="删除">删除</a>
-            <a href="javascript:;" class="operate move-post" title="移动">移动</a>
-          </td>
-          <td><%= fd post.updated_at %></td>
-        </tr>
-    <% end %>
-    <% if @books.size + @posts.size == 0 %>
-        <div>
-          <label>没有笔记</label>
-        </div>
-    <% end %>
-  </table>
+  <%= render 'res' %>
 </div>
 <div class="new-book-win">
   <div class="win-title">

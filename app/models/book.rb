@@ -4,5 +4,5 @@ class Book < ActiveRecord::Base
   has_many :books
   has_many :posts
 
-  attr_accessible :name
+
 end

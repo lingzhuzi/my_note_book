@@ -11,24 +11,23 @@ class BooksController < ApplicationController
   end
 
   def show
-
-  end
-
-  def new
-    @book = Book.new
-
+    @book = Book.find(params[:id])
+    @books = @book.books
+    @posts = @book.posts
     respond_to do |format|
-      format.html
-      format.json { render :json => @book }
+      format.html { render :index }
+      format.json { render json: {book: @book, books: @books, posts: @posts }}
     end
   end
 
   def create
-    @book = Book.new(params[:book])
+    @book = Book.new(book_params)
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to books_path }
+        parent_book = @book.book
+        path = parent_book.present? ? book_path(parent_book) : books_path
+        format.html { redirect_to path }
         format.json { render :json => @book }
       else
         format.html { render :action => :new, :notice => "保存失败" }
@@ -37,15 +36,13 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
 
-  end
 
   def update
     @book = Book.find(params[:id])
 
     respond_to do |format|
-      if @book.update_attributes(params[:book])
+      if @book.update_attributes(book_params)
         format.html { redirect_to book_path(@book), :notice => 'book was successfully updated.' }
         format.json { render :json => {:id => @book.id, :status => :updated} }
       else
@@ -66,11 +63,26 @@ class BooksController < ApplicationController
   end
 
   def search
-    @books = Book.where(:book_id => params[:id])
-    @posts = Post.where(:book_id => params[:id])
+    @books = Book.where('name like ?', "%#{params[:key_word]}%")
+    @posts = Post.where('title like ?', "%#{params[:key_word]}%")
 
     respond_to do |format|
-      format.json { render :json => {:html => render_to_string(:partial => "res", :formats => [:html])} }
+      format.json { render :json => {:res => render_to_string(:partial => "res", :formats => [:html])} }
     end
+  end
+
+  def back
+    book = Book.find(params[:book_id])
+
+    if book && book.book.present?
+      redirect_to book_path(book.book)
+    else
+      redirect_to books_path
+    end
+  end
+
+  private
+  def book_params
+    params.require(:book).permit(:name, :book_id)
   end
 end

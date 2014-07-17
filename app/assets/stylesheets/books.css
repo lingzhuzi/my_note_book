@@ -37,9 +37,10 @@ table.list td.checkbox-td {
 
 table.list span.checkbox {
     width: 18px;
-    height: 18px;
-    background: url(/assets/checkbox.png) no-repeat 0 4px;
+    height: 15px;
+    background-image: url(/assets/checkbox.png);
     _background-image: url(/assets/checkbox-png8.png);
+    background-repeat: no-repeat;
     margin-left: 15px;
     display: inline-block;
 }
@@ -50,6 +51,13 @@ table.list span.checkbox.selected {
 
 table.list td a {
     color: #444;
+}
+
+table.list td a.btn{
+    height: 15px;
+    line-height: 15px;
+    font-weight: normal;
+    display: none;
 }
 
 table.list td.file-name {

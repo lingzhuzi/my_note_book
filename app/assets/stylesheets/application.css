@@ -60,7 +60,7 @@ html, body {
     margin-bottom: 10px;
 }
 
-.toolbar a.btn {
+a.btn {
     display: inline-block;
     padding: 5px 10px;
     color: #474747;
@@ -78,7 +78,7 @@ html, body {
     background: linear-gradient(top, #f5f5f5, #e5e5e5);
 }
 
-.toolbar a.btn:hover {
+a.btn:hover {
     background: -webkit-linear-gradient(top, #f0f7fa, #d8eaf2);
     background: -moz-linear-gradient(top, #f0f7fa, #d8eaf2);
     background: -ms-linear-gradient(top, #f0f7fa, #d8eaf2);

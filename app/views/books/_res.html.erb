@@ -1,0 +1,41 @@
+<table class="list">
+  <% @books.each do |book| %>
+      <tr class="book-line <%= "book-#{book.id}" %>">
+        <td class="checkbox-td"><span class="checkbox"></span></td>
+        <td class="file-name folder-icon">
+          <%= link_to "#{book.name}", book, :class => "book-name" %>
+          <input type="hidden" value="<%= book.id %>" class="book-id">
+          <input type="text" value="<%= book.name %>" class="rename-input rename-book">
+          <a href="javascript:void(0);" class="btn sure_btn">确定</a>
+          <a href="javascript:void(0);" class="btn cancel_btn">取消</a>
+        </td>
+        <td class="operate-bar">
+          <a href="javascript:;" class="operate rename-book" title="重命名">重命名</a>
+          <a href="javascript:;" class="operate delete-book" title="删除">删除</a>
+          <a href="javascript:;" class="operate move-book" title="移动">移动</a>
+        </td>
+        <td class="updated-at"><%= fd book.updated_at %></td>
+      </tr>
+  <% end %>
+  <% @posts.each do |post| %>
+      <tr class="post-line <%= "post-#{post.id}" %>">
+        <td class="checkbox-td"><span class="checkbox"></span></td>
+        <td class="file-name post-icon">
+          <%= link_to "#{post.title}", post, :class => "post-title", :target => "_blank" %>
+          <input type="hidden" value="<%= post.id %>" class="post-id">
+          <input type="text" value="<%= post.title %>" class="rename-input rename-post"></td>
+        <td class="operate-bar">
+          <a href="javascript:;" class="operate rename-post" title="重命名">重命名</a>
+          <%= link_to "编辑", edit_post_path(post) %>
+          <a href="javascript:;" class="operate delete-post" title="删除">删除</a>
+          <a href="javascript:;" class="operate move-post" title="移动">移动</a>
+        </td>
+        <td><%= fd post.updated_at %></td>
+      </tr>
+  <% end %>
+  <% if @books.size + @posts.size == 0 %>
+      <div>
+        <label>没有笔记</label>
+      </div>
+  <% end %>
+</table>

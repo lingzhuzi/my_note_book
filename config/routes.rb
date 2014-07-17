@@ -8,7 +8,10 @@ MyNotebook::Application.routes.draw do
 
   get "web/contact_us"
 
-  resources :books
+  resources :books do
+    get 'back'
+    get 'search', on: :collection
+  end
   resources :posts
 
   root :to => 'web#index'

@@ -20,99 +20,131 @@ $(function () {
             this.initPostOperator();
         },
         initHoverLineEvent: function () {
-            var $list = $("table.list");
-            $list.on("mouseenter", "tr", function () {
+
+            $(document).on("mouseenter", "tr", function () {
                 $(this).addClass("hover");
                 $(this).find("td.operate-bar a").show();
             });
-            $list.on("mouseleave", "tr", function () {
+            $(document).on("mouseleave", "tr", function () {
                 $(this).removeClass("hover");
                 $(this).find("td.operate-bar a").hide();
             });
 
         },
         initClickLineEvent: function () {
-            var $list = $("table.list");
-            $list.on("click", "tr", function () {
-                $("table.list .selected").removeClass("selected");
-                $(this).addClass("selected");
-                $(this).find(".checkbox").addClass("selected");
+
+            $(document).on("click", "tr", function () {
+                var $tr = $(this);
+                if ($tr.hasClass('selected')) {
+                    $tr.removeClass('selected');
+                    $tr.find(".checkbox").removeClass("selected");
+                } else {
+                    $tr.addClass("selected");
+                    $tr.find(".checkbox").addClass("selected");
+                }
             });
-            $list.on("focusout", "tr", function () {
+            $(document).on("focusout", "tr", function () {
                 console.log("2");
             });
         },
         initClickCheckboxEvent: function () {
-            $("table.list").on("click", "span.checkbox", function () {
+            $(document).on("click", "span.checkbox", function () {
                 $(this).addClass("selected");
                 $(this).parents("tr").addClass("selected");
                 return false;
             });
         },
         initBookOperator: function () {
-            var $list = $("table.list");
             var editor = this;
-            $list.on("click", "a.rename-book", function () {
+            $(document).on("click", "a.rename-book", function () {
                 var $tr = $(this).parents("tr");
                 $tr.find(".book-name").hide();
                 $tr.find(".rename-input").show().focus();
+                $tr.find('.btn').show();
                 return false;
             });
-            $list.on("keydown", ".rename-input.rename-book", function (evt) {
+            $(document).on("keydown", ".rename-input.rename-book", function (evt) {
                 if (evt.keyCode == 13) {
-                    editor.renameBook($(this));
+                    var $tr = $(this).closest('tr'),
+                        book_id = $(this).siblings('.book-id').val(),
+                        book_name = $(this).val();
+                    editor.renameBook(book_id, book_name, $tr);
                 }
             });
-            $list.on("focusout", ".rename-input.rename-book", function (evt) {
-                var $book_name = $(this).parents("tr").find(".book-name");
-                var book_name = $book_name.text();
-                $(this).hide();
-                $book_name.show();
-                $(this).val(book_name);
+            $(document).on("click", ".sure_btn", function (evt) {
+                var $tr = $(this).closest('tr'),
+                    book_id = $tr.find('.book-id').val(),
+                    book_name = $tr.find('.rename-input').val();
+
+                editor.renameBook(book_id, book_name, $tr);
             });
-            $list.on("click", ".delete-book", function () {
+
+            $(document).on("click", ".cancel_btn", function (evt) {
+                var $tr = $(this).parents("tr");
+                var $book_name = $tr.find(".book-name");
+                var book_name = $book_name.text();
+                $book_name.show();
+                var $input = $tr.find('.rename-input');
+                $input.hide();
+                $input.val(book_name);
+                $tr.find('.btn').hide();
+            });
+            $(document).on("click", ".delete-book", function () {
                 // todo 删除笔记本
                 var book_id = $(this).parents("tr.book-line").find(".book-id").val();
                 editor.deleteBook(book_id);
             });
-            $list.on("click", ".move-book", function () {
+            $(document).on("click", ".move-book", function () {
                 // todo 移动笔记本
             });
         },
         initPostOperator: function () {
             var editor = this;
-            var $list = $("table.list");
-            $list.on("click", "a.rename-post", function () {
+
+            $(document).on("click", "a.rename-post", function () {
                 var $tr = $(this).parents("tr");
                 $tr.find(".post-title").hide();
                 $tr.find(".rename-input").show().focus();
                 return false;
             });
-            $list.on("keydown", ".rename-input.rename-post", function (evt) {
+            $(document).on("keydown", ".rename-input.rename-post", function (evt) {
                 if (evt.keyCode == 13) {
                     editor.renamePost($(this));
                 }
             });
-            $list.on("focusout", ".rename-input.rename-post", function (evt) {
+            $(document).on("focusout", ".rename-input.rename-post", function (evt) {
                 var $post_name = $(this).parents("tr").find(".post-title");
                 var post_name = $post_name.text();
                 $(this).hide();
                 $post_name.show();
                 $(this).val(post_name);
             });
-            $list.on("click", ".delete-post", function () {
+            $(document).on("click", ".delete-post", function () {
                 // todo 删除笔记
 
             });
-            $list.on("click", ".move-post", function () {
+            $(document).on("click", ".move-post", function () {
                 // todo 移动笔记
             });
         },
         initToolBarButtons: function () {
-            var editor = this;
-            $(".toolbar .new-book-btn").click(function () {
+            var editor = this, $toolbar = $('.toolbar');
+            $toolbar.find(".new-book-btn").click(function () {
                 editor.showNewBookWin("", "");
                 return false;
+            });
+
+            $toolbar.find('.search-btn').click(function () {
+                var keyWord = $.trim($('#key_word').val());
+
+                if (keyWord) {
+                    $.get('/books/search', {key_word: keyWord}, function (data) {
+                        $('.list-content').html(data.res);
+                        new Notice("success", "查询成功").show();
+                    });
+                } else {
+                    new Notice("success", "请输入关键字").show();
+                }
             });
         },
         initNewBookWin: function () {
@@ -145,18 +177,23 @@ $(function () {
             // todo
             var $win = $(".new-book-win");
             var book_name = $win.find(".book-name").val();
+            var parent_book_id = $('#book_id').val();
             if (book_name) {
-                $.post("/books", {book: {name: book_name}},function (data) {
+                $.post("/books", {book: {name: book_name, book_id: parent_book_id}}, function (data) {
                     console.log(data);
                     var $table = $("table.list");
                     // todo 将book-line制作为模板
                     var $book_line = $table.find("tr.book-line").first().clone();
-                    $book_line.addClass("book-" + data.id);  // todo remember to remove the class book-*
-                    $book_line.find("a.book-name").text(data.name).attr("href", "/books/" + data.id);
-                    $book_line.find(".book-id").val(data.id);
-                    $book_line.find(".rename-input.rename-book").val(data.name);
-                    $table.find("tbody").append($book_line);
-                    $win.hide();
+                    if ($book_line.length > 0) {
+                        $book_line.addClass("book-" + data.id);  // todo remember to remove the class book-*
+                        $book_line.find("a.book-name").text(data.name).attr("href", "/books/" + data.id);
+                        $book_line.find(".book-id").val(data.id);
+                        $book_line.find(".rename-input.rename-book").val(data.name);
+                        $table.find("tbody").append($book_line);
+                        $win.hide();
+                    } else {
+                        window.location = '/books/' + $('#book_id').val();
+                    }
                 }, "json").error(function () {
                         console.error("error occurs when creating the book.");
                     }
@@ -183,9 +220,7 @@ $(function () {
                 console.error("the id of the book is null, can't rename it!");
             }
         },
-        renameBook: function ($obj) {
-            var book_id = $obj.siblings(".book-id").val();
-            var book_name = $obj.val();
+        renameBook: function (book_id, book_name, $tr) {
             if (book_id) {
                 $.ajax({
                     type: "put",
@@ -194,8 +229,9 @@ $(function () {
                     dataType: "json",
                     success: function (data) {
                         console.log(data);
-                        $obj.hide();
-                        $obj.siblings("a.book-name").text(book_name).show();
+                        $tr.find('.rename-input').hide();
+                        $tr.find('.btn').hide();
+                        $tr.find("a.book-name").text(book_name).show();
                     },
                     error: function () {
                         console.error("error occurs when renaming the book name.")

@@ -2,6 +2,7 @@
     <div class="title-div">
       <%= f.text_field :title %>
       <%= f.hidden_field :id %>
+      <%= f.hidden_field :book_id %>
     </div>
     <div class="toolbar edit_toolbar">
       <a href="#" class="btn content_btn">正文</a>
@@ -19,9 +20,10 @@
       <%= f.text_area :content, :style => "width:1000px;height:500px;resize:vertical;font-size:13px;" %>
     </div>
     <div class="toolbar post_toolbar">
-      <a class="btn save_btn" href="#">保存</a>
       <a class="btn preview_btn" href="#">预览</a>
       <a class="btn format_btn" href="#">格式化</a>
+      <a class="btn save_btn" href="#">保存</a>
+      <a class="btn back_btn" href="#">返回</a>
     </div>
 <% end %>
 

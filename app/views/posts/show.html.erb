@@ -1,5 +1,10 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="toolbar" style="position: relative;">
+
+  <div class="operate-bar" style="display: inline-block;">
+    <%= link_to '编辑', edit_post_path(@post), class: 'btn' %>
+  </div>
+
+</div>
 <div class="post">
   <div class="title">
     <label>
